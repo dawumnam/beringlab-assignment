@@ -1,0 +1,186 @@
+openapi: "3.0.0"
+info:
+  title: "Account Service"
+  version: "1.0.0"
+
+paths:
+  /account/create:
+    post:
+      summary: "Create an account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDto"
+      responses:
+        "201":
+          description: "Account created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateResponse"
+        "400":
+          description: "An error occurred"
+          content:
+            application/json:
+              example: { error: "An Error Occured" }
+
+  /account/verify:
+    post:
+      summary: "Verify an account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyDto"
+      responses:
+        "200":
+          description: "Account verified successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerifyResponse"
+        "400":
+          description: "An error occurred"
+          content:
+            application/json:
+              example: { error: "An Error Occured" }
+
+  /account/balance:
+    get:
+      summary: "Check balance"
+      parameters:
+        - in: "header"
+          name: "Authorization"
+          required: true
+          schema:
+            type: "string"
+          description: "Authorization token"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BalanceDto"
+      responses:
+        "200":
+          description: "Balance retrieved successfully"
+          content:
+            application/json:
+              example: { balance: 1000 }
+        "400":
+          description: "An error occurred"
+          content:
+            application/json:
+              example: { error: "An Error Occured" }
+
+  /account/withdraw:
+    post:
+      summary: "Withdraw from account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WithdrawDto"
+      responses:
+        "200":
+          description: "Withdrawal is successful"
+          content:
+            application/json:
+              example: { message: "Withdrawal is successful" }
+        "400":
+          description: "An error occurred"
+          content:
+            application/json:
+              example: { error: "An Error Occured" }
+
+  /account/deposit:
+    post:
+      summary: "Deposit into account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DepositDto"
+      responses:
+        "200":
+          description: "Deposit is successful"
+          content:
+            application/json:
+              example: { message: "Deposit is successful" }
+        "400":
+          description: "An error occurred"
+          content:
+            application/json:
+              example: { error: "An Error Occured" }
+
+components:
+  schemas:
+    CreateDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+      example:
+        phoneNumber: "+821012341234"
+        userName: "testtest"
+        firstName: "John"
+        lastName: "Doe"
+        password: "!@#test1234"
+
+    VerifyDto:
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+    BalanceDto:
+      type: object
+      properties:
+        id:
+          type: string
+    WithdrawDto:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
+        cardId:
+          type: string
+    DepositDto:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
+        cardId:
+          type: string
+    CreateResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        id:
+          type: string
+    VerifyResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        id:
+          type: string

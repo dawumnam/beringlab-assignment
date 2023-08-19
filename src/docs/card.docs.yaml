@@ -1,0 +1,107 @@
+openapi: "3.0.0"
+info:
+  title: Card Service
+  version: "1.0.0"
+paths:
+  /card/register:
+    post:
+      summary: Register Card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterDto"
+            example:
+              accountId: "12345"
+              count: 5
+      responses:
+        201:
+          description: Registration Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: string
+              example:
+                ids: ["card1", "card2", "card3", "card4", "card5"]
+        400:
+          description: An Error Occurred
+
+  /card/enable:
+    post:
+      summary: Enable Card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableDto"
+            example:
+              cardId: "card1"
+              accountId: "12345"
+      responses:
+        200:
+          description: Card Enabled Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "Card enabled successfully"
+        400:
+          description: An Error Occurred
+
+  /card/disable:
+    post:
+      summary: Disable Card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DisableDto"
+            example:
+              cardId: "card1"
+              accountId: "12345"
+      responses:
+        200:
+          description: Card Disabled Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "Card disabled successfully"
+        400:
+          description: An Error Occurred
+
+components:
+  schemas:
+    RegisterDto:
+      type: object
+      properties:
+        accountId:
+          type: string
+        count:
+          type: number
+    EnableDto:
+      type: object
+      properties:
+        cardId:
+          type: string
+        accountId:
+          type: string
+    DisableDto:
+      allOf:
+        - $ref: "#/components/schemas/EnableDto"
