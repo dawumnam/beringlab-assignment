@@ -44,7 +44,7 @@ npm start dev
 
 ### Swagger
 
-http://localhost:3000/api-docs/
+<http://localhost:3000/api-docs/>
 
 ### Build and run
 
@@ -62,13 +62,3 @@ logs are stored as application.log and error.log in the root directory
 ## 📜 License
 
 This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md) file for details.
-
-```
-
-You can customize the content further by adding specific details about the project's usage, contribution guidelines, or other pertinent information. Feel free to modify or remove any sections as you see fit.
-
-```
-
-```
-
-```
