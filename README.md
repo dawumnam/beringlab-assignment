@@ -1,11 +1,7 @@
-# beringlab-assignment
+# csr bank server
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)
-
-## 📝 Description
-
-This project is designed to fulfill specific requirements for the Bering Lab assignment.
 
 ## 🏁 Getting Started
 
@@ -23,8 +19,8 @@ You will need to have the following installed on your system:
 Clone the project from github repository
 
 ```bash
-git clone https://github.com/dawumnam/beringlab-assignment.git
-cd beringlab-assignment
+git clone https://github.com/dawumnam/csr-bank-server.git
+cd csr-bank-server
 npm install
 ```
 
